@@ -2,6 +2,9 @@
 require_once 'models/Booking.php';
 require_once 'models/Student.php';
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 class StudentPaymentController extends Controller {
     private $bookingModel;
     private $studentModel;
@@ -106,11 +109,43 @@ if ($this->bookingModel->update($booking_id, [
         }
     }
 
-    private function sendPaymentConfirmation($booking, $amount, $method) {
-        // Simulate email confirmation
-        // In real implementation, you would send actual email here
+   private function sendPaymentConfirmation($booking, $amount, $method) {
+    require_once __DIR__ . '/../vendor/autoload.php'; // Adjust path if needed
+
+    $mail = new PHPMailer(true);
+    try {
+        //Server settings
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.gmail.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'lameckvin@gmail.com';  
+        $mail->Password   = 'ybvk kghm ijdr ormn';    
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = 587;
+
+        //Recipients
+        $mail->setFrom('lameckvin@gmail.com', 'Ariga\'s Smart Hostel');
+        $mail->addAddress($_SESSION['student_data']['email'], $_SESSION['student_data']['name']);
+
+        //Content
+       $mail->isHTML(true);
+        $mail->Subject = 'Payment Confirmation - Hostel Booking';
+        $mail->Body    = "
+            Dear {$_SESSION['student_data']['name']},<br><br>
+            We are pleased to confirm that we have received your payment of <strong>Ksh " . number_format($amount) . "</strong> 
+            for <strong>Room {$booking['room_number']}</strong>.<br><br>
+            <strong>Payment Method:</strong> {$method}<br><br>
+            Thank you for completing your payment. Your booking is now confirmed.<br><br>
+            Best regards,<br>
+            Hostel Administration
+        ";
+
+        $mail->send();
         $_SESSION['email_sent'] = 'Payment confirmation sent to ' . $_SESSION['student_data']['email'];
+    } catch (Exception $e) {
+        $_SESSION['email_sent'] = 'Email could not be sent. Mailer Error: ' . $mail->ErrorInfo;
     }
+}
 
     public function history() {
         $this->requireLogin('student');
