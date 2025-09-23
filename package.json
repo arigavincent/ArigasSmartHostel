@@ -1,0 +1,21 @@
+{
+  "name": "ariga's-smart-hostel-management-system",
+  "version": "1.0.0",
+  "description": "Smart hostel management system built with web technologies",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "autopush": "git add . && git commit -m \"Auto-commit: $(date)\" && git push origin main"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arigavincent/ArigasSmartHostel.git"
+  },
+  "keywords": ["hostel", "management", "system", "web", "php", "mysql"],
+  "author": "Vincent Ariga",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arigavincent/ArigasSmartHostel/issues"
+  },
+  "homepage": "https://github.com/arigavincent/ArigasSmartHostel#readme"
+}
