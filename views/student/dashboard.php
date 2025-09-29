@@ -229,6 +229,19 @@
                 <?php endif; ?>
             </div>
         </div>
+
+        <!-- Clearance Section -->
+        <div class="glass-card p-6 fade-in-up" data-delay="1300">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-check-circle text-blue-600 mr-2"></i>Clearance
+            </h3>
+            <p class="text-gray-600 mb-4">
+                To proceed with your clearance, please ensure all dues are cleared and fill out the clearance form.
+            </p>
+            <a href="index.php?url=student/clearance" class="bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600">
+                Request Clearance
+            </a>
+        </div>
     </div>
 
     <!-- JavaScript for scroll-triggered animations -->

@@ -54,6 +54,19 @@ $router->add('admin/student-details', 'AdminStudentController@viewStudent');
 $router->add('admin/reset-password', 'AdminStudentController@resetPassword');
 $router->add('admin/reports', 'AdminReportsController@index');
 
+// --- Student Clearance Routes ---
+$router->add('student/clearance', 'StudentClearanceController@index');
+$router->add('student/request-clearance', 'StudentClearanceController@requestForm');
+$router->add('student/submit-clearance', 'StudentClearanceController@submitRequest');
+$router->add('student/clearance-certificate', 'StudentClearanceController@viewClearance');
+
+// --- Admin Clearance Routes ---
+$router->add('admin/clearance-requests', 'AdminClearanceController@index');
+$router->add('admin/review-clearance', 'AdminClearanceController@review');
+$router->add('admin/approve-clearance', 'AdminClearanceController@approve');
+$router->add('admin/reject-clearance', 'AdminClearanceController@reject');
+$router->add('admin/download-clearance-pdf', 'AdminClearanceController@downloadPDF');
+
 
 // Dispatch the route
 $router->dispatch($url);

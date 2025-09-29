@@ -15,17 +15,25 @@ class AdminReportsController extends Controller {
     }
 
     public function index() {
-        $this->requireLogin('admin');
-        
-        // Get report data
-        $reports = $this->generateReports();
-        
-        $this->view('admin/reports', [
-            'title' => 'Reports & Analytics - ' . APP_NAME,
-            'reports' => $reports,
-            'admin' => $_SESSION['admin_data']
-        ]);
-    }
+    // Fetch real data from your models
+    $roomStats = $this->roomModel->getRoomStats(); // e.g., total, occupied, available
+    $financialStats = $this->bookingModel->getFinancialStats(); // e.g., total revenue, pending
+    $studentStats = $this->studentModel->getStudentStats(); // e.g., total, with bookings
+    $bookingStats = $this->bookingModel->getBookingStats(); // e.g., total, active, cancelled
+    $monthlyBookings = $this->bookingModel->getMonthlyBookings();
+    $roomTypes = $this->roomModel->getRoomTypeDistribution();
+    $detailedBookings = $this->bookingModel->getDetailedBookings(); // for detailed CSV
+
+    $this->view('admin/reports', [
+        'room_stats' => $roomStats,
+        'financial_stats' => $financialStats,
+        'student_stats' => $studentStats,
+        'booking_stats' => $bookingStats,
+        'monthly_bookings' => $monthlyBookings,
+        'room_types' => $roomTypes,
+        'detailed_bookings' => $detailedBookings
+    ]);
+}
 
     private function generateReports() {
         // Room statistics

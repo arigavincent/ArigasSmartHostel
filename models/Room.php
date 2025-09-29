@@ -50,5 +50,33 @@ class Room extends Model {
         $stmt->execute([$room_number]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    
+    public function getRoomStats() {
+        $rooms = $this->findAll();
+        $total = count($rooms);
+        $available = count($this->getAvailableRooms());
+        $occupied = $total - $available;
+        $occupancy_rate = $total > 0 ? round(($occupied / $total) * 100, 1) : 0;
+
+        return [
+            'total' => $total,
+            'available' => $available,
+            'occupied' => $occupied,
+            'occupancy_rate' => $occupancy_rate
+        ];
+    }
+    
+    public function getRoomTypeDistribution() {
+        $query = "
+            SELECT room_type, COUNT(*) AS count
+            FROM rooms
+            GROUP BY room_type
+            ORDER BY room_type ASC
+        ";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
+
 ?>

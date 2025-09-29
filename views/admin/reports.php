@@ -55,8 +55,14 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-blue-100 text-sm">Room Occupancy</p>
-                        <p class="text-3xl font-bold" id="occupancy-rate">85%</p>
-                        <p class="text-blue-100 text-sm"><span id="occupied-rooms">34</span> of <span id="total-rooms">40</span> rooms</p>
+                        <p class="text-3xl font-bold" id="occupancy-rate">
+                            <?= htmlspecialchars($room_stats['occupancy_rate']) ?>%
+                        </p>
+                        <p class="text-blue-100 text-sm">
+                            <span id="occupied-rooms"><?= htmlspecialchars($room_stats['occupied']) ?></span>
+                            of
+                            <span id="total-rooms"><?= htmlspecialchars($room_stats['total']) ?></span> rooms
+                        </p>
                     </div>
                     <i class="fas fa-bed text-4xl text-blue-200"></i>
                 </div>
@@ -67,8 +73,12 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-green-100 text-sm">Total Revenue</p>
-                        <p class="text-3xl font-bold" id="total-revenue">Ksh.450,000</p>
-                        <p class="text-green-100 text-sm">Avg: <span id="avg-booking">Ksh.13,235</span></p>
+                        <p class="text-3xl font-bold" id="total-revenue">
+                            Ksh.<?= number_format($financial_stats['total_revenue']) ?>
+                        </p>
+                        <p class="text-green-100 text-sm">
+                            Avg: <span id="avg-booking">Ksh.<?= number_format($financial_stats['average_booking_value']) ?></span>
+                        </p>
                     </div>
                     <i class="fas fa-money-bill-wave text-4xl text-green-200"></i>
                 </div>
@@ -79,8 +89,12 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-yellow-100 text-sm">Total Students</p>
-                        <p class="text-3xl font-bold" id="total-students">120</p>
-                        <p class="text-yellow-100 text-sm"><span id="students-with-bookings">85</span> with bookings</p>
+                        <p class="text-3xl font-bold" id="total-students">
+                            <?= htmlspecialchars($student_stats['total']) ?>
+                        </p>
+                        <p class="text-yellow-100 text-sm">
+                            <span id="students-with-bookings"><?= htmlspecialchars($student_stats['with_bookings']) ?></span> with bookings
+                        </p>
                     </div>
                     <i class="fas fa-users text-4xl text-yellow-200"></i>
                 </div>
@@ -91,9 +105,11 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-red-100 text-sm">Pending Revenue</p>
-                        <p class="text-3xl font-bold" id="pending-revenue">Ksh.75,000</p>
+                        <p class="text-3xl font-bold" id="pending-revenue">
+                            Ksh.<?= number_format($financial_stats['pending_revenue']) ?>
+                        </p>
                         <p class="text-red-100 text-sm">Unpaid bookings</p>
-                    </div>
+                                            </div>
                     <i class="fas fa-exclamation-triangle text-4xl text-red-200"></i>
                 </div>
             </div>
@@ -127,19 +143,19 @@
                 <div class="space-y-3" id="room-stats-table">
                     <div class="flex justify-between items-center p-3 bg-gray-50 rounded">
                         <span class="text-gray-700">Total Rooms</span>
-                        <span class="font-bold text-gray-900">40</span>
+                        <span class="font-bold text-gray-900"><?= htmlspecialchars($room_stats['total']) ?></span>
                     </div>
                     <div class="flex justify-between items-center p-3 bg-green-50 rounded">
                         <span class="text-gray-700">Available Rooms</span>
-                        <span class="font-bold text-green-600">6</span>
+                        <span class="font-bold text-green-600"><?= htmlspecialchars($room_stats['available']) ?></span>
                     </div>
                     <div class="flex justify-between items-center p-3 bg-red-50 rounded">
                         <span class="text-gray-700">Occupied Rooms</span>
-                        <span class="font-bold text-red-600">34</span>
+                        <span class="font-bold text-red-600"><?= htmlspecialchars($room_stats['occupied']) ?></span>
                     </div>
                     <div class="flex justify-between items-center p-3 bg-blue-50 rounded">
                         <span class="text-gray-700">Occupancy Rate</span>
-                        <span class="font-bold text-blue-600">85%</span>
+                        <span class="font-bold text-blue-600"><?= htmlspecialchars($room_stats['occupancy_rate']) ?>%</span>
                     </div>
                 </div>
             </div>
@@ -152,19 +168,19 @@
                 <div class="space-y-3" id="booking-stats-table">
                     <div class="flex justify-between items-center p-3 bg-gray-50 rounded">
                         <span class="text-gray-700">Total Bookings</span>
-                        <span class="font-bold text-gray-900">95</span>
+                        <span class="font-bold text-gray-900"><?= htmlspecialchars($booking_stats['total']) ?></span>
                     </div>
                     <div class="flex justify-between items-center p-3 bg-green-50 rounded">
                         <span class="text-gray-700">Active Bookings</span>
-                        <span class="font-bold text-green-600">85</span>
+                        <span class="font-bold text-green-600"><?= htmlspecialchars($booking_stats['active']) ?></span>
                     </div>
                     <div class="flex justify-between items-center p-3 bg-red-50 rounded">
                         <span class="text-gray-700">Cancelled Bookings</span>
-                        <span class="font-bold text-red-600">10</span>
+                        <span class="font-bold text-red-600"><?= htmlspecialchars($booking_stats['cancelled']) ?></span>
                     </div>
                     <div class="flex justify-between items-center p-3 bg-yellow-50 rounded">
                         <span class="text-gray-700">Cancellation Rate</span>
-                        <span class="font-bold text-yellow-600">10.5%</span>
+                        <span class="font-bold text-yellow-600"><?= htmlspecialchars($booking_stats['cancellation_rate']) ?>%</span>
                     </div>
                 </div>
             </div>
@@ -201,44 +217,19 @@
     </div>
 
     <script>
-        // Sample data (in real app, this would come from PHP variables)
+        // Pass PHP data to JS
         const reportsData = {
-            room_stats: {
-                total: 40,
-                occupied: 34,
-                available: 6,
-                occupancy_rate: 85
-            },
-            financial_stats: {
-                total_revenue: 450000,
-                average_booking_value: 13235,
-                pending_revenue: 75000
-            },
-            student_stats: {
-                total: 120,
-                with_bookings: 85
-            },
-            booking_stats: {
-                total: 95,
-                active: 85,
-                cancelled: 10,
-                cancellation_rate: 10.5
-            },
-            monthly_bookings: [
-                { month: '2024-01', bookings: 15 },
-                { month: '2024-02', bookings: 18 },
-                { month: '2024-03', bookings: 22 },
-                { month: '2024-04', bookings: 25 },
-                { month: '2024-05', bookings: 28 },
-                { month: '2024-06', bookings: 32 }
-            ],
-            room_types: [
-                { room_type: 'Single', count: 15 },
-                { room_type: 'Double', count: 18 },
-                { room_type: 'Suite', count: 5 },
-                { room_type: 'Dormitory', count: 2 }
-            ]
+            room_stats: <?= json_encode($room_stats) ?>,
+            financial_stats: <?= json_encode($financial_stats) ?>,
+            student_stats: <?= json_encode($student_stats) ?>,
+            booking_stats: <?= json_encode($booking_stats) ?>,
+            monthly_bookings: <?= json_encode($monthly_bookings) ?>,
+            room_types: <?= json_encode($room_types) ?>,
         };
+        const detailedBookings = <?= json_encode($detailed_bookings) ?>;
+
+        
+        
 
         // Chart initialization
         const monthlyLabels = reportsData.monthly_bookings.map(item => {
@@ -548,71 +539,86 @@
             }
         }
 
-        // Detailed CSV Export Function
+        // CSV Export Function - Detailed Bookings Data
         function exportDetailedCSV() {
-            try {
-                const csvData = [];
-                const currentDate = new Date().toISOString().split('T')[0];
-                
-                // Sample detailed booking data (in real app, this would come from backend)
-                const detailedBookings = [
-                    { id: 'BK001', student_name: 'John Doe', room_number: 'R101', room_type: 'Single', check_in: '2024-01-15', check_out: '2024-06-15', amount: 15000, status: 'Active', payment_status: 'Paid' },
-                    { id: 'BK002', student_name: 'Jane Smith', room_number: 'R102', room_type: 'Double', check_in: '2024-02-01', check_out: '2024-07-01', amount: 12000, status: 'Active', payment_status: 'Pending' },
-                    { id: 'BK003', student_name: 'Mike Johnson', room_number: 'R201', room_type: 'Single', check_in: '2024-01-20', check_out: '2024-06-20', amount: 15000, status: 'Active', payment_status: 'Paid' },
-                    { id: 'BK004', student_name: 'Sarah Wilson', room_number: 'R202', room_type: 'Suite', check_in: '2024-03-01', check_out: '2024-08-01', amount: 25000, status: 'Cancelled', payment_status: 'Refunded' },
-                    { id: 'BK005', student_name: 'David Brown', room_number: 'R203', room_type: 'Double', check_in: '2024-02-15', check_out: '2024-07-15', amount: 12000, status: 'Active', payment_status: 'Paid' }
-                ];
-                
-                // Header
-                csvData.push(['Detailed Hostel Bookings Report']);
-                csvData.push([`Generated on: ${new Date().toLocaleString()}`]);
-                csvData.push(['']);
-                
-                // Booking details header
-                csvData.push([
-                    'Booking ID',
-                    'Student Name', 
-                    'Room Number',
-                    'Room Type',
-                    'Check-in Date',
-                    'Check-out Date',
-                    'Amount (KES)',
-                    'Booking Status',
-                    'Payment Status'
-                ]);
-                
-                // Add booking data
-                detailedBookings.forEach(booking => {
-                    csvData.push([
-                        booking.id,
-                        booking.student_name,
-                        booking.room_number,
-                        booking.room_type,
-                        booking.check_in,
-                        booking.check_out,
-                        booking.amount.toLocaleString(),
-                        booking.status,
-                        booking.payment_status
-                    ]);
-                });
-                
-                csvData.push(['']);
-                csvData.push(['Summary']);
-                csvData.push(['Total Bookings', detailedBookings.length]);
-                csvData.push(['Total Revenue', `KES ${detailedBookings.reduce((sum, booking) => sum + booking.amount, 0).toLocaleString()}`]);
-                csvData.push(['Active Bookings', detailedBookings.filter(b => b.status === 'Active').length]);
-                csvData.push(['Pending Payments', detailedBookings.filter(b => b.payment_status === 'Pending').length]);
-                
-                // Convert to CSV string
-                const csvString = csvData.map(row => 
-                    row.map(cell => {
-                        const cellStr = String(cell);
-                        if (cellStr.includes(',') || cellStr.includes('"') || cellStr.includes('\n')) {
-                            return `"${cellStr.replace(/"/g, '""')}"`;
-                        }
-                        return cellStr;
-                    }).join(',')
-                ).join('\n');
-                
-                // Create and download file
-                const blob = new Blob([csv])
+    try {
+        const csvData = [];
+        const currentDate = new Date().toISOString().split('T')[0];
+
+        // Header
+        csvData.push(['Detailed Hostel Bookings Report']);
+        csvData.push([`Generated on: ${new Date().toLocaleString()}`]);
+        csvData.push(['']);
+
+        // Booking details header
+        csvData.push([
+            'Booking ID',
+            'Student Name', 
+            'Room Number',
+            'Room Type',
+            'Check-in Date',
+            'Check-out Date',
+            'Amount (KES)',
+            'Booking Status',
+            'Payment Status'
+        ]);
+
+        // Add booking data from PHP
+        detailedBookings.forEach(booking => {
+            csvData.push([
+                booking.id,
+                booking.student_name,
+                booking.room_number,
+                booking.room_type,
+                booking.check_in,
+                booking.check_out,
+                booking.amount.toLocaleString(),
+                booking.status,
+                booking.payment_status
+            ]);
+        });
+
+        csvData.push(['']);
+        csvData.push(['Summary']);
+        csvData.push(['Total Bookings', detailedBookings.length]);
+        csvData.push(['Total Revenue', `KES ${detailedBookings.reduce((sum, booking) => sum + booking.amount, 0).toLocaleString()}`]);
+        csvData.push(['Active Bookings', detailedBookings.filter(b => b.status === 'Active').length]);
+        csvData.push(['Pending Payments', detailedBookings.filter(b => b.payment_status === 'Pending').length]);
+
+        // Convert to CSV string
+        const csvString = csvData.map(row => 
+            row.map(cell => {
+                const cellStr = String(cell);
+                if (cellStr.includes(',') || cellStr.includes('"') || cellStr.includes('\n')) {
+                    return `"${cellStr.replace(/"/g, '""')}"`;
+                }
+                return cellStr;
+            }).join(',')
+        ).join('\n');
+
+        // Create and download file
+        const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        const fileName = `hostel_detailed_report_${currentDate}.csv`;
+
+        if (link.download !== undefined) {
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', fileName);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+
+        showExportStatus(`Detailed CSV report exported successfully as ${fileName}`);
+
+    } catch (error) {
+        console.error('Detailed CSV export error:', error);
+        showExportStatus('Failed to export detailed CSV. Please try again.', false);
+    }
+}
+    </script>
+</body>
+</html>
